@@ -33,7 +33,7 @@ jobs:
           name: build
           path: .next/
       - name: Run Unit Tests
-        run: npm run unit test
+        run: npm run test
       - name: Upload Coverage Test
         if: always()
         uses: actions/upload-artifact@v3
