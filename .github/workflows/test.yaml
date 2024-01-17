@@ -25,6 +25,8 @@ jobs:
         run: npm run typecheck
       - name: Build Project
         run: npm run build
+        env:
+            FLAGSMITH_KEY: ${{ secrets.FLAGSMITH_KEY }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -46,6 +48,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run E2E Tests
         run: npm run test:e2e
+        env:
+            FLAGSMITH_KEY: ${{ secrets.FLAGSMITH_KEY }}
       - name: Upload E2E Coverage Test
         if: always()
         uses: actions/upload-artifact@v3
