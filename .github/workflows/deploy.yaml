@@ -75,12 +75,12 @@ jobs:
             - name: Get AWS ENV Name
               id: get-env-name
               run: echo "aws_env=$(aws elasticbeanstalk describe-environments --application-name ${{vars.AWS_EB_APP_NAME}}
-                  --environment-name ${{inputs.aws_env}} --query "Environments[0].EnvironmentName" 
+                  --environment-name ${{inputs.aws-env}} --query "Environments[0].EnvironmentName" 
                   --output text)" >> $GITHUB_OUTPUT
             - name: Get AWS ENV Status
               id: get-env-status
               run: echo "aws_status=$(aws elasticbeanstalk describe-environments --application-name ${{vars.AWS_EB_APP_NAME}}
-                  --environment-name ${{inputs.aws_env}} --query "Environments[0].Status" 
+                  --environment-name ${{inputs.aws-env}} --query "Environments[0].Status" 
                   --output text)" >> $GITHUB_OUTPUT
             - name: Initialize EB
               run: eb init ${{vars.AWS_EB_APP_NAME}} --platform "${{vars.AWS_EB_PLATFORM}}" --region ${{vars.AWS_REGION}}
@@ -94,7 +94,7 @@ jobs:
             - name: Get AWS ENV CNAME
               id: get-env-cname
               run: echo "aws_cname=$(aws elasticbeanstalk describe-environments --application-name ${{vars.AWS_EB_APP_NAME}}
-                  --environment-name ${{inputs.aws_env}} --query "Environments[0].CNAME" 
+                  --environment-name ${{inputs.aws-env}} --query "Environments[0].CNAME" 
                   --output text)" >> $GITHUB_OUTPUT
             - name: Send A Slack Message On Failure
               id: slack
@@ -108,8 +108,7 @@ jobs:
                               "type": "section",
                               "text": {
                               "type": "mrkdwn",
-                              "text": ":muscle-rocket: Deployment to AWS environment *${{inputs.aws_env}}*
-                               using *${{inputs.github-env}}* GitHub environment was successfull. <http://${{steps.get-env-cname.outputs.aws_cname}}|View Deployment>"
+                              "text": ":muscle-rocket: Deployment to AWS environment *${{inputs.aws-env}}* using *${{inputs.github-env}}* GitHub environment was successfull. <http://${{steps.get-env-cname.outputs.aws_cname}}|View Deployment>"
                               }
                           }
                           ]
