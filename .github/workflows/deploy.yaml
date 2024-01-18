@@ -99,7 +99,7 @@ jobs:
               uses: slackapi/slack-github-action@v1.24.0
               continue-on-error: true
               with:
-                payload: |
+               payload: |
                       {
                           "blocks": [
                           {
@@ -112,9 +112,9 @@ jobs:
                           }
                           ]
                       }
-                  env:
-                    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-                    SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+                env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+                  SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
             - name: Abort if Cancelled
               if: cancelled() && steps.install-eb-cli.conclusion == 'success'
               run: eb abort ${{ inputs.aws-env}}
