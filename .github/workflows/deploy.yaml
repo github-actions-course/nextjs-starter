@@ -96,8 +96,8 @@ jobs:
                   --output text)" >> $GITHUB_OUTPUT
             - name: Send A Slack Message On Failure
               id: slack
-              uses: slackapi/slack-github-action@v1.24.0
               continue-on-error: true
+              uses: slackapi/slack-github-action@v1.24.0
               with:
                payload: |
                       {
@@ -112,7 +112,7 @@ jobs:
                           }
                           ]
                       }
-                env:
+              env:
                   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
                   SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
             - name: Abort if Cancelled
