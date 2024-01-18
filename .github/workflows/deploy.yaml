@@ -62,6 +62,8 @@ jobs:
               run: npm ci
             - name: Build App
               run: npm run build
+              env:
+                FLAGSMITH_KEY: ${{ secrets.FLAGSMITH_KEY }}
             - name: Cache
               uses: actions/cache@v3
               with:
@@ -81,7 +83,7 @@ jobs:
                   --environment-name ${{inputs.aws_env}} --query "Environments[0].Status" 
                   --output text)" >> $GITHUB_OUTPUT
             - name: Initialize EB
-              run: eb init ${{vars.AWS_EB_APP_NAME}} --platform ${{vars.AWS_EB_PLATFORM}} --region ${{vars.AWS_REGION}}
+              run: eb init ${{vars.AWS_EB_APP_NAME}} --platform "${{vars.AWS_EB_PLATFORM}}" --region ${{vars.AWS_REGION}}
             - name: Create A New Environment
               if: steps.get-env-name.outputs.aws_env == 'None' || steps.get-env-status.outputs.aws_status == 'Terminated'
               run: eb create ${{inputs.aws-env}} --instance-types ${{vars.AWS_EB_ENV_INSTANCE_TYPES}} --cname ${{inputs.aws-env}}
