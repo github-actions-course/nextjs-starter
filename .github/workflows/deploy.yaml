@@ -97,7 +97,7 @@ jobs:
             - name: Send A Slack Message On Failure
               id: slack
               uses: slackapi/slack-github-action@v1.24.0
-              continue-on-errr: true
+              continue-on-error: true
               with:
                 payload: |
                       {
