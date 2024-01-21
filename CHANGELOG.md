@@ -1,5 +1,11 @@
 # next-1
 
+## 0.2.0
+
+### Minor Changes
+
+- 885eb6c: Fixed stuff
+
 ## 0.1.1
 
 ### Patch Changes
