@@ -21,5 +21,5 @@ jobs:
                         issue_number: context.issue.number,
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        body: 'Comment with `/deploy` to deploy to a new staging environment and `/destroy` to destroy the staging environment!'
+                        body: 'Comment with `/deploy` to deploy to a new staging environment and `/destroy` to destroy the staging environment'
                     })
