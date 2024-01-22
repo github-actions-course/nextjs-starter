@@ -7,9 +7,37 @@ on:
 jobs:
     trigger-pr-branch-deploy:
         name: Trigger PR Branch Deploy
+        if: github.event.issue.pull_request && github.event.issue.state == 'open' && github.event.comment.body == '/deploy'
         runs-on: ubuntu-latest
+        permissions:
+            actions: write
         steps:
-            - name: Log Event
-              run: echo '${{ toJson(github.event) }}'
-            - name: Log Branch
-              run: echo '${{ toJson(github.ref) }}'
+            - name: Get Pull Request Head Ref
+              id: get-head-ref
+              uses: actions/github-script@v6
+              with:
+                result-encoding: string
+                script: |
+                    const response = await github.rest.pulls.get({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        pull_request: context.issue.number
+                    });
+                    console.log(response.data);
+                    return response.data.head.ref;
+            - name: Trigger A Branch Deploy
+              uses: actions/github-script@v6
+              with:
+                script: |
+                 const response = await github.rest.actions.createWorkflowDispatch({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    workflow_id: "deploy.yaml",
+                    ref: "${{steps.get-head-ref.outputs.result}}"
+                    inputs: {
+                        "aws-env": `github-actions-course-demo-pr-${context.issue.number}`,
+                        "github-env": "staging",
+                        "report-pr": `${context.issue.number}`
+                    }
+                 })
+                 console.log(response);
