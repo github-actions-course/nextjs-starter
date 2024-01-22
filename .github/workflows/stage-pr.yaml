@@ -1,0 +1,15 @@
+name: Deploy PR Branch
+
+on:
+    issue_comment:
+        types: [created]
+
+jobs:
+    trigger-pr-branch-deploy:
+        name: Trigger PR Branch Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Log Event
+              run: echo '${{ toJson(github.event) }}'
+            - name: Log Branch
+              run: echo '${{ toJson(github.ref) }}'
