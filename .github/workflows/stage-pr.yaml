@@ -23,7 +23,7 @@ jobs:
                     const response = await github.rest.pulls.get({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        pull_request: context.issue.number
+                        pull_number: context.issue.number
                     });
                     console.log(response.data);
                     return response.data.head.ref;
