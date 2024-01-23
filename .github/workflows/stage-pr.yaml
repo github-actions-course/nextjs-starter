@@ -16,7 +16,7 @@ jobs:
             actions: write
         steps:
             - name: Print Something
-              run: echo ${{github.event.issue.pull_request}}
+              run: echo ${{toJson(github.event.issue.pull_request)}}
             - name: Get Pull Request Head Ref
               id: get-head-ref
               uses: actions/github-script@v6
