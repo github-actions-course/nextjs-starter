@@ -9,6 +9,8 @@ jobs:
         name: Trigger PR Branch Deploy
         if: github.event.issue.pull_request && github.event.issue.state == 'open' && github.event.comment.body == '/deploy'
         runs-on: ubuntu-latest
+        env:
+            TOKEN: ${{ secrets.GITHUB_TOKEN }}
         permissions:
             actions: write
         steps:
