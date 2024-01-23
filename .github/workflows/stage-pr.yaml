@@ -37,7 +37,7 @@ jobs:
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     workflow_id: "deploy.yaml",
-                    ref: "${{steps.get-head-ref.outputs.result}}"
+                    ref: "${{steps.get-head-ref.outputs.result}}",
                     inputs: {
                         "aws-env": `github-actions-course-demo-pr-${{env.NUMBER}}`,
                         "github-env": "staging",
