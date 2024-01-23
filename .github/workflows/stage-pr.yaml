@@ -11,6 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NUMBER: ${{ github.event.issue.pull_request.number }}
         permissions:
             actions: write
         steps:
@@ -31,15 +32,16 @@ jobs:
               uses: actions/github-script@v6
               with:
                 script: |
+                 var number
                  const response = await github.rest.actions.createWorkflowDispatch({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     workflow_id: "deploy.yaml",
                     ref: "${{steps.get-head-ref.outputs.result}}"
                     inputs: {
-                        "aws-env": `github-actions-course-demo-pr-${context.issue.number}`,
+                        "aws-env": `github-actions-course-demo-pr-${{env.NUMBER}}`,
                         "github-env": "staging",
-                        "report-pr": `${context.issue.number}`
+                        "report-pr": `${{env.NUMBER}}`
                     }
                  })
                  console.log(response);
