@@ -15,7 +15,7 @@ jobs:
         permissions:
             actions: write
         steps:
-            - name: Get Pull Request Head Ref
+            - name: Get Pull Request Head Ref!!
               id: get-head-ref
               uses: actions/github-script@v6
               with:
