@@ -28,7 +28,7 @@ jobs:
                     });
                     console.log(response.data);
                     return response.data.head.ref;
-            - name: Trigger A Branch Deploy
+            - name: Trigger A Branch Deploy!
               uses: actions/github-script@v6
               with:
                 script: |
