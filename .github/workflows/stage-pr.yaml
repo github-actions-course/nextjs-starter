@@ -11,12 +11,10 @@ jobs:
         runs-on: ubuntu-latest
         env:
             TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NUMBER: ${{ toJson(github.event.issue) }}
+            NUMBER: ${{ github.event.issue.number }}
         permissions:
             actions: write
         steps:
-            - name: Print Something!!
-              run: echo ${{toJson(github.event.issue)}}
             - name: Get Pull Request Head Ref
               id: get-head-ref
               uses: actions/github-script@v6
