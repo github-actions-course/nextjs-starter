@@ -132,7 +132,7 @@ jobs:
                     "type": "section",
                     "text": {
                     "type": "mrkdwn",
-                    "text": ":muscle-rocket: Deployment to AWS environment *${{inputs.aws-env}}* using *${{inputs.github-env}}* GitHub environment was successfull. <http://${{steps.get-env-cname.outputs.aws_cname}}|View Deployment>"
+                    "text": ":muscle-rocket: Deployment to AWS environment *${{inputs.aws-env}}* using *${{inputs.github-env}}* GitHub Environment was successfull. <http://${{steps.get-env-cname.outputs.aws_cname}}|View Deployment>"
                     }
                 }
                 ]
