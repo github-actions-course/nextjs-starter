@@ -15,7 +15,7 @@ jobs:
         permissions:
             actions: write
         steps:
-            - name: Print Something
+            - name: Print Something!
               run: echo ${{toJson(github.event.issue.pull_request)}}
             - name: Get Pull Request Head Ref
               id: get-head-ref
