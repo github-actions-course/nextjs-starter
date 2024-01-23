@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NUMBER: ${{ github.event.issue.pull_request }}
+            NUMBER: ${{ toJson(github.event.issue.pull_request) }}
         permissions:
             actions: write
         steps:
