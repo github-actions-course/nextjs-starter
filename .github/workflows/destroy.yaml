@@ -30,15 +30,24 @@ jobs:
 
             - name: Get AWS ENV Name
               id: get-env-name
-              run: echo "aws_env=$(aws elasticbeanstalk describe-environments) --application-name ${{vars.AWS_EB_APP_NAME}} --environment-names github-actions-course-demo-pr-${{github.event.issue.number || github.event.pull_request.number}} --query "Environments[0].EnvironmentName" --output text)" >> $GITHUB_OUTPUT
+              run:
+                 echo "aws_env=$(aws elasticbeanstalk describe-environments) 
+                 --application-name ${{vars.AWS_EB_APP_NAME}} --environment-names 
+                 github-actions-course-demo-pr-${{github.event.issue.number || github.event.pull_request.number}} 
+                 --query "Environments[0].EnvironmentName" --output text)" >> $GITHUB_OUTPUT
 
             - name: Get AWS ENV Status
               id: get-env-status
-              run: echo "aws_env_status=$(aws elasticbeanstalk describe-environments) --application-name ${{vars.AWS_EB_APP_NAME}} --environment-names github-actions-course-demo-pr-${{github.event.issue.number || github.event.pull_request.number}} --query "Environments[0].Status" --output text)" >> $GITHUB_OUTPUT
+              run: 
+                echo "aws_env_status=$(aws elasticbeanstalk describe-environments) 
+                --application-name ${{vars.AWS_EB_APP_NAME}} --environment-names 
+                github-actions-course-demo-pr-${{github.event.issue.number || github.event.pull_request.number}} --query "Environments[0].Status" 
+                --output text)" >> $GITHUB_OUTPUT
 
             - name: Decide if Environment Needs To Be Terminated
               id: check-env
-              run: echo "should_terminate=${{ steps.get-env-name.outputs.aws_env != 'None' && steps.get-env-status.outputs.aws_env_status != 'Terminated' }}" >> $GITHUB_OUTPUT
+              run: 
+                echo "should_terminate=${{ steps.get-env-name.outputs.aws_env != 'None' && steps.get-env-status.outputs.aws_env_status != 'Terminated' }}" >> $GITHUB_OUTPUT
 
             - name: Destroy Environment
               if: steps.check-env.outputs.should_terminate == 'true'
