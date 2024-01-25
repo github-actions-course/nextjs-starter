@@ -118,7 +118,7 @@ jobs:
               continue-on-error: true
               with:
                 script: |
-                     const comment = `### Environment Terminated Successfully!!!`
+                     const comment = `### Environment Terminated Successfully`
       
                      github.rest.issues.createComment({
                          owner: context.repo.owner,
