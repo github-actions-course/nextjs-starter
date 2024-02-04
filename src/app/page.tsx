@@ -9,13 +9,17 @@ export default function Home() {
   return (
     <main className="main">
       <div>
-        <h2>Hello SystemOne LLC</h2>
+        <h2>SystemOne LLC</h2>
       </div>
-      <Link href="/your partner in health">
-        <a>your partner in health</a>
+      <Link href="/your 
+      partner 
+      in health">
+        <a>your 
+          partner
+           in health</a>
       </Link>
       <br />
-      {isSearchFeatureEnabled && <input placeholder="Health is more than Wealth" />}
+      {isSearchFeatureEnabled && <input color="Health is more than Wealth" />}
     </main>
   );
 }
