@@ -1,17 +1,22 @@
 import Link from "next/link";
-import flagsmith from "@utils/flagsmith";
- export const revalidate = 0
+
+export const revalidate = 0;
+
 export default function Home() {
-  const flags = flagsmith.getEnvironmentalflags();
+  // Placeholder for flags or feature toggle logic
+  const isSearchFeatureEnabled = true; // Replace with your feature toggle logic
+
   return (
-    <main className="main" >
+    <main className="main">
       <div>
         <h2>Hello World</h2>
       </div>
-      <Link href="/about">About</Link>
-      <br/>
-      {flags.isfeatureEnabled("search") && 
-      <input placeholder="search" />}
+      <Link href="/about">
+        <a>About</a>
+      </Link>
+      <br />
+      {isSearchFeatureEnabled && <input placeholder="search" />}
     </main>
   );
 }
+

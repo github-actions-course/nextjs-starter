@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../sidrepo"
+		},
+		{
+			"name": "nextjs-starter",
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
