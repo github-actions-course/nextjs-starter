@@ -12,7 +12,7 @@ export default function Home() {
         <h2>Hello SystemOne LLC</h2>
       </div>
       <Link href="/your partner in health">
-        <a>About</a>
+        <a>your partner in health</a>
       </Link>
       <br />
       {isSearchFeatureEnabled && <input placeholder="Health is more than Wealth" />}
