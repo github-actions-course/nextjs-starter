@@ -9,13 +9,13 @@ export default function Home() {
   return (
     <main className="main">
       <div>
-        <h2>Hello World</h2>
+        <h2>Hello SystemOne LLC</h2>
       </div>
-      <Link href="/about">
+      <Link href="/your partner in health">
         <a>About</a>
       </Link>
       <br />
-      {isSearchFeatureEnabled && <input placeholder="search" />}
+      {isSearchFeatureEnabled && <input placeholder="health is more than wealth" />}
     </main>
   );
 }
