@@ -15,7 +15,7 @@ export default function Home() {
         <a>About</a>
       </Link>
       <br />
-      {isSearchFeatureEnabled && <input placeholder="health is more than wealth" />}
+      {isSearchFeatureEnabled && <input placeholder="Health is more than Wealth" />}
     </main>
   );
 }
