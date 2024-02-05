@@ -1,32 +1,36 @@
-name: CI/CD Pipeline
-
+name: test wokflow
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
-jobs:
-  build-and-deploy:
+jobs: 
+  test-and-build:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: setup node environment
+        uses: actions/setup-node@v3
         with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ github.repository }}:${{ github.sha }}
-
-      - name: Deploy to AWS Elastic Beanstalk
-        uses: aws-actions/configure-aws-credentials@v1
+          node-version: 18
+          cache: npm
+      - name: install dependencies
+        run: npm ci
+      - name: check for formatting errors
+        run: npm run format
+      - name: check for eslint errors
+        run: npm run lint
+      - name: check for type errors
+        run: npm run typecheck
+      - name: build project 
+        run: npm run build
+      - uses: actions/upload-action@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1  # Change this to your AWS region
-
-      - name: Deploy to AWS Elastic Beanstalk
-        run: eb deploy
+          name: build
+          path: .next/
+      - name: run unit tests
+        run: npm run test
+      - uses: actions/upload-action@v3
+        if: always()
+        with: 
+          name: coverage
+          path: .coverage/
