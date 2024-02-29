@@ -1,0 +1,36 @@
+name: test wokflow
+on:
+  workflow_call:
+
+jobs: 
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: install dependencies
+        run: npm ci
+      - name: check for formatting errors
+        run: npm run format
+      - name: check for eslint errors
+        run: npm run lint
+      - name: check for type errors
+        run: npm run typecheck
+      - name: build project 
+        run: npm run build
+      - uses: actions/upload-action@v3
+        with:
+          name: build
+          path: .next/
+      - name: run unit tests
+        run: npm run test
+      - uses: actions/upload-action@v3
+        if: always()
+        with: 
+          name: coverage
+          path: .coverage/
