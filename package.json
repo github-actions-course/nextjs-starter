@@ -14,12 +14,15 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@changesets/cli": "^2.27.9",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
+    "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
+    "flagsmith-nodejs": "^3.3.3",
+    "next": "^13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.6"

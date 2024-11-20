@@ -1,0 +1,5 @@
+* @kurmanbek10
+*.js @kurmanbek10
+*.ts @kurmanbek10
+*.tsx @kurmanbek10
+/e2e/ @kurmanbek13
