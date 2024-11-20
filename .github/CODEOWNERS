@@ -1,0 +1,5 @@
+* @GaspardPierre
+*.js @GaspardPierre
+*.ts @GaspardPierre
+*.tsx @GaspardPierre
+/e2e/ @GaspardPierre
