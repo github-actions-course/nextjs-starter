@@ -51,3 +51,4 @@ jobs:
         with:
           payload-file-path: "./.github/slack/test-failure-slack-payload.json"
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: webhook-trigger
